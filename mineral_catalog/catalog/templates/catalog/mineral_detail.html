@@ -1,9 +1,13 @@
 {% extends "catalog/layout.html" %}
 
+{% block title %}Mineral Detail{% endblock %}
+
 {% block content %}
 
-<div>
-    Das ist ein detail test
+<div class="grid-100 mineral__container">
+    {% for value in minerals.all %}
+    <h1 class="mineral__name">{{ value.name }}</h1>
+    {% endfor %}
 </div>
 
 {% endblock %}

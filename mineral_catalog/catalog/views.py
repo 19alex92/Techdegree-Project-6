@@ -1,7 +1,6 @@
 #import json
 #import os
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
 
 from .models import Minerals
 
@@ -15,8 +14,9 @@ def mineral_list(request):
     return render(request, 'catalog/mineral_list.html', {'minerals': minerals})
 
 
-def mineral_detail(request):
-    return render(request, 'catalog/mineral_detail.html')
+def mineral_detail(request, pk):
+    minerals = get_object_or_404(Minerals, pk=pk)
+    return render(request, 'catalog/mineral_detail.html', {'minerals': minerals})
 
 
 #def import_method(request):
