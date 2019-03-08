@@ -2,8 +2,16 @@
 
 {% block content %}
 
-<div>
-    Hier wird die Liste der Mineral eingefügt und in die Layout Page integriert
+<div class="grid-100">
+    <ul class="minerals__container">
+        {% for value in minerals %}
+        <li class="minerals__item">
+            <a class="minerals__anchor" href="#">
+            {{ value.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

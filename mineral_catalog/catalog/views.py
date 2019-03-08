@@ -1,5 +1,5 @@
-import json
-import os
+#import json
+#import os
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -12,7 +12,7 @@ def index(request):
 
 def mineral_list(request):
     minerals = Minerals.objects.all()
-    return render(request, 'catalog/mineral_list.html')
+    return render(request, 'catalog/mineral_list.html', {'minerals': minerals})
 
 
 def mineral_detail(request):

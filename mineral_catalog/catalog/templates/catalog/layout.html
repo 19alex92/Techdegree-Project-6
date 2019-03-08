@@ -1,11 +1,25 @@
+{% load static from static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="#"> <!--Achtung style importieren-->
+        <link rel="stylesheet" href="{% static 'catalog/css/styles.css' %}">
     </head>
     <body>
-        <h1>Hello World</h1>
-        {% block content %}{% endblock %}
+        <div class="bounds {% block class %}{% endblock %}">
+            <div class="grid-100">
+                <a href="#">
+                    <h1 class="logo_name text-centered">Hello World</h1>
+                </a>
+                <p class="logo_text text-centered">
+                    They're not rocks!
+                </p>
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+        <div class="minerals__random">
+            <a class="minerals__anchor" href="#">Show random mineral</a>
+        </div>
     </body>
 </html>
