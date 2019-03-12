@@ -1,5 +1,6 @@
 {% extends "catalog/layout.html" %}
 {% load static from static %}
+{% load course_extras %}
 
 {% block title %}Mineral Detail{% endblock %}
 
@@ -8,127 +9,29 @@
 {% block content %}
 
 <div class="grid-100 mineral__container">
-    {% for value in minerals.all %}
+    {% for value in minerals %}
         <h1 class="mineral__name">{{ value.name }}</h1>
         <div class="mineral__image-bg">
             <img class="mineral__image" src="{% static 'catalog/media/'|add:value.name|add:'.jpg' %}" alt="{{ value.image_caption }}">
             <p class="mineral__caption">{{ value.image_caption }}</p>
         </div>
+    {% endfor %}
         <div class="mineral__table-container">
             <table class="mineral__table">
                 <tbody>
-                    {% if value.category != "" %}
-                    <tr>
-                        <td class="mineral__category">Category</td>
-                        <td>{{ value.category }}</td>
-                    </tr>
+                    {% for key, value in dict_minerals.items %}
+                    {% if value != "" %}
+                    {% if key != "id" and key != "image_filename" and key != "image_caption" and key != "name" %}
+                        <tr>
+                            <td class="mineral__category">{{ key|strip_underline|title_case }}</td>
+                            <td>{{ value|safe }}</td>
+                        </tr>
                     {% endif %}
-                    {% if value.formula != "" %}
-                    <tr>
-                        <td class="mineral__category">Formula</td>
-                        <td>{{ value.formula|safe }}</td>
-                    </tr>
                     {% endif %}
-                    {% if value.strunz_classification != "" %}
-                    <tr>
-                        <td class="mineral__category">Strunz Classification</td>
-                        <td>{{ value.strunz_classification }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.unit_cell != "" %}
-                    <tr>
-                        <td class="mineral__category">Unit Cell</td>
-                        <td>{{ value.unit_cell }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.color != "" %}
-                    <tr>
-                        <td class="mineral__category">Color</td>
-                        <td>{{ value.color }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.crystal_habit != "" %}
-                    <tr>
-                        <td class="mineral__category">Crystal Habit</td>
-                        <td>{{ value.crystal_habit }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.mohs_scale_hardness != "" %}
-                    <tr>
-                        <td class="mineral__category">Mohs Scale Hardness</td>
-                        <td>{{ value.mohs_scale_hardness }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.crystal_system != "" %}
-                    <tr>
-                        <td class="mineral__category">Crystal System</td>
-                        <td>{{ value.crystal_system }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.crystal_symmetry != "" %}
-                    <tr>
-                        <td class="mineral__category">Crystal Symmetry</td>
-                        <td>{{ value.crystal_symmetry }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.cleavage != "" %}
-                    <tr>
-                        <td class="mineral__category">Cleavage</td>
-                        <td>{{ value.cleavage }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.luster != "" %}
-                    <tr>
-                        <td class="mineral__category">Luster</td>
-                        <td>{{ value.luster }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.streak != "" %}
-                    <tr>
-                        <td class="mineral__category">Streak</td>
-                        <td>{{ value.streak }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.diaphaneity != "" %}
-                    <tr>
-                        <td class="mineral__category">Diaphaneity</td>
-                        <td>{{ value.diaphaneity }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.optical_properties != "" %}
-                    <tr>
-                        <td class="mineral__category">Optical Properties</td>
-                        <td>{{ value.optical_properties }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.diaphaneity != "" %}
-                    <tr>
-                        <td class="mineral__category">Diaphaneity</td>
-                        <td>{{ value.diaphaneity }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.refractive_index != "" %}
-                    <tr>
-                        <td class="mineral__category">Refractive Index</td>
-                        <td>{{ value.refractive_index }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.specific_gravity != "" %}
-                    <tr>
-                        <td class="mineral__category">Specific Gravity</td>
-                        <td>{{ value.specific_gravity }}</td>
-                    </tr>
-                    {% endif %}
-                    {% if value.group != "" %}
-                    <tr>
-                        <td class="mineral__category">Group</td>
-                        <td>{{ value.group }}</td>
-                    </tr>
-                    {% endif %}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
-    {% endfor %}
 </div>
 
 {% endblock %}

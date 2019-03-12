@@ -10,9 +10,16 @@ def mineral_list(request):
     return render(request, 'catalog/mineral_list.html', {'minerals': minerals})
 
 
+#def mineral_detail(request, name, pk):
+ #   minerals = Minerals.objects.filter(pk=pk)
+  #  return render(request, 'catalog/mineral_detail.html', {'minerals': minerals})
+
+
 def mineral_detail(request, name, pk):
     minerals = Minerals.objects.filter(pk=pk)
-    return render(request, 'catalog/mineral_detail.html', {'minerals': minerals})
+    dict_minerals = Minerals.objects.filter(pk=pk).values()[0]
+    return render(request, 'catalog/mineral_detail.html', {'minerals': minerals,
+                                                           'dict_minerals': dict_minerals})
 
 
 #def import_method(request):
