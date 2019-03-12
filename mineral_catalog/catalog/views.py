@@ -5,17 +5,13 @@ from django.shortcuts import get_object_or_404, render
 from .models import Minerals
 
 
-def index(request):
-    return render(request, 'catalog/layout.html')
-
-
 def mineral_list(request):
     minerals = Minerals.objects.all()
     return render(request, 'catalog/mineral_list.html', {'minerals': minerals})
 
 
-def mineral_detail(request, pk):
-    minerals = get_object_or_404(Minerals, pk=pk)
+def mineral_detail(request, name, pk):
+    minerals = Minerals.objects.filter(pk=pk)
     return render(request, 'catalog/mineral_detail.html', {'minerals': minerals})
 
 

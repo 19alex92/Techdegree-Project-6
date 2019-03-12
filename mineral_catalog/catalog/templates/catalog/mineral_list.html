@@ -9,7 +9,7 @@
     <ul class="minerals__container">
         {% for value in minerals %}
         <li class="minerals__item">
-            <a class="minerals__anchor" href="{% url 'catalog:detail' pk=value.pk %}">
+            <a class="minerals__anchor" href="{% url 'catalog:detail' name=value.name pk=value.pk %}">
             {{ value.name }}
             </a>
         </li>
