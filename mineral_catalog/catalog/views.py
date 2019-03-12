@@ -1,5 +1,6 @@
 #import json
 #import os
+import collections
 from django.shortcuts import get_object_or_404, render
 
 from .models import Minerals
@@ -17,7 +18,7 @@ def mineral_list(request):
 
 def mineral_detail(request, name, pk):
     minerals = Minerals.objects.filter(pk=pk)
-    dict_minerals = Minerals.objects.filter(pk=pk).values()[0]
+    dict_minerals = collections.OrderedDict(Minerals.objects.filter(pk=pk).values()[0])
     return render(request, 'catalog/mineral_detail.html', {'minerals': minerals,
                                                            'dict_minerals': dict_minerals})
 

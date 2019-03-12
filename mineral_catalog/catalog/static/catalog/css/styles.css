@@ -162,7 +162,7 @@ input[type="text"]:focus { border-color: #97cca6; }
 
 ul { list-style: circle inside; padding-left: 0; margin-top: 0; }
 
-li { margin-bottom: 1rem; font-size: 1.3rem; }
+li { margin-bottom: 1rem; font-size: 1.3rem; display: inline-block; width: 100%}
 
 th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e1e1e1; }
 

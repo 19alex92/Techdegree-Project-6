@@ -10,7 +10,11 @@
         {% for value in minerals %}
         <li class="minerals__item">
             <a class="minerals__anchor" href="{% url 'catalog:detail' name=value.name pk=value.pk %}">
-            {{ value.name }}
+            {% if value.name.count <= 38 %}
+                {{ value.name }}
+            {% else %}
+                {{ value.name|truncatechars:38 }}
+            {% endif %}
             </a>
         </li>
         {% endfor %}
