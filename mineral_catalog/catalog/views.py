@@ -1,7 +1,9 @@
 #import json
 #import os
 import collections
-from django.shortcuts import get_object_or_404, render
+
+from django.http import Http404
+from django.shortcuts import render
 
 from .models import Minerals
 
@@ -17,11 +19,13 @@ def mineral_list(request):
 
 
 def mineral_detail(request, name, pk):
-    minerals = Minerals.objects.filter(pk=pk)
-    dict_minerals = collections.OrderedDict(Minerals.objects.filter(pk=pk).values()[0])
+    try:
+        minerals = Minerals.objects.filter(pk=pk)
+        dict_minerals = collections.OrderedDict(Minerals.objects.filter(pk=pk).values()[0])
+    except Minerals.DoesNotExist:
+        raise Http404("This page doesn't seem to exist")
     return render(request, 'catalog/mineral_detail.html', {'minerals': minerals,
                                                            'dict_minerals': dict_minerals})
-
 
 #def import_method(request):
 #    filepath = os.path.dirname(__file__)
