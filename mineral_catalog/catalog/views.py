@@ -13,11 +13,6 @@ def mineral_list(request):
     return render(request, 'catalog/mineral_list.html', {'minerals': minerals})
 
 
-#def mineral_detail(request, name, pk):
- #   minerals = Minerals.objects.filter(pk=pk)
-  #  return render(request, 'catalog/mineral_detail.html', {'minerals': minerals})
-
-
 def mineral_detail(request, name, pk):
     try:
         minerals = Minerals.objects.filter(pk=pk)
@@ -26,6 +21,7 @@ def mineral_detail(request, name, pk):
         raise Http404("This page doesn't seem to exist")
     return render(request, 'catalog/mineral_detail.html', {'minerals': minerals,
                                                            'dict_minerals': dict_minerals})
+
 
 #def import_method(request):
 #    filepath = os.path.dirname(__file__)
