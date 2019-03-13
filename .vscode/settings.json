@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "C:\\Users\\Alexander\\.virtualenvs\\Techdegree-Project-6-2A_PyXLH\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\Alexander\\.virtualenvs\\Techdegree-Project-6-2A_PyXLH\\Scripts\\python.exe",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
 }

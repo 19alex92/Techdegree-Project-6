@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from .models import Minerals
 
+
 class CatalogViewTests(TestCase):
 
     def setUp(self):
@@ -19,10 +20,9 @@ class CatalogViewTests(TestCase):
         for value in self.mineral:
             self.assertContains(resp, value.name)
 
-
     def test_catalog_mineral_detail_view(self):
         resp = self.client.get(reverse('catalog:detail',
-                                        kwargs={'name': self.mineral_test.name,
-                                                'pk': self.mineral_test.pk}))
+                                       kwargs={'name': self.mineral_test.name,
+                                               'pk': self.mineral_test.pk}))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'catalog/mineral_detail.html')
